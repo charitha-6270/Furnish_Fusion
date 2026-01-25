@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-box">
+    <h2>Admin Registration</h2>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="phone_no" placeholder="Phone Number" required>
+        <textarea name="address" placeholder="Address" required></textarea>
+
+        <button type="submit" class="btn">Register as Admin</button>
+    </form>
+
+    <p>Already have an admin account? <a href="/admin/login">Admin Login</a></p>
+    <p style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #e5e7eb;">
+        Regular user? <a href="/register">User Registration</a> | <a href="/login">User Login</a>
+    </p>
+</div>
+
+{% endblock %}

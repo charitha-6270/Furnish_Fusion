@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-container">
+    <h1>Welcome to <span>Furnish Fusion</span> 🛋️</h1>
+    <p>Your one-stop destination for modern, comfortable, and stylish furniture.</p>
+
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/hero_furniture.jpg') }}"
+             alt="Furniture shopping">
+    </div>
+</div>
+{% endblock %}
+
+

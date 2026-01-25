@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="landing-container">
+    <h1>Welcome to Furnish Fusion 🛋️</h1>
+    <p>Please login or register to explore our furniture collection.</p>
+
+    <div class="landing-buttons">
+        <a href="/login" class="btn">User Login</a>
+        <a href="/register" class="btn">User Register</a>
+    </div>
+
+    <div class="admin-section">
+        <h3>Admin Access</h3>
+        <a href="/admin/login" class="btn">Admin Login</a>
+    </div>
+</div>
+{% endblock %}

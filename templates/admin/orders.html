@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="page-title">All Orders</h2>
+
+
+<table class="admin-table">
+    <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Products</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for o in orders %}
+    <tr>
+        <td>{{ o.id }}</td>
+
+        <td>{{ o.customer_name }}</td>
+
+       <td class="admin-products">
+    {% for item in o['items'] %}
+        <div class="admin-product-card">
+            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+            <div class="product-info">
+                <p class="product-name">{{ item.name }}</p>
+                <span class="product-qty">Qty: {{ item.quantity }}</span>
+            </div>
+        </div>
+    {% endfor %}
+</td>
+
+
+
+        <td>₹{{ o.total_price }}</td>
+
+        <td>{{ o.status | capitalize }}</td>
+
+        <td>
+            {% if o.status == 'placed' %}
+                <a href="/admin/order-status/{{ o.id }}/shipped">Ship</a>
+            {% elif o.status == 'shipped' %}
+                <a href="/admin/order-status/{{ o.id }}/delivered">Deliver</a>
+            {% else %}
+                Completed
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+
+
+
+

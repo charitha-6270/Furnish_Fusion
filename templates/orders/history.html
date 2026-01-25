@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>My Orders</h2>
+
+{% if orders %}
+    <div class="product-grid">
+        {% for order in orders %}
+            <div class="product-card">
+                <p><strong>Order ID:</strong> {{ order.id }}</p>
+                <p><strong>Total:</strong> ₹{{ order.total_price }}</p>
+                <p class="order-status {{ order.status }}">
+                    Status: {{ order.status | capitalize }}
+                </p>
+                <p><strong>Date:</strong> {{ order.created_at }}</p>
+
+                <!-- Products in this order -->
+                <div class="order-products">
+                    {% for item in order['items'] %}
+                        <div class="order-product">
+                            <img src="{{ url_for('static', filename=item.image) }}" 
+                                 alt="{{ item.name }}" class="order-product-img">
+                            <p class="product-name">{{ item.name }}</p>
+                            <p class="product-qty">x {{ item.quantity }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- CANCEL: Only if order not shipped -->
+                {% if order.status == 'placed' %}
+                    <a href="/cancel-order/{{ order.id }}" 
+                       class="btn"
+                       style="background:#dc2626;">
+                        Cancel Order
+                    </a>
+                {% endif %}
+
+                <!-- RETURN: Only if delivered -->
+                {% if order.status == 'delivered' %}
+                    <a href="/return-order/{{ order.id }}" 
+                       class="btn"
+                       style="background:#f59e0b;">
+                        Return Order
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No orders yet.</p>
+{% endif %}
+
+{% endblock %}
+
+
+
+
+
