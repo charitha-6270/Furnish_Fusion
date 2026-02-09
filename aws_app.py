@@ -15,7 +15,7 @@ from datetime import datetime
 # ==================== AWS CONFIGURATION ====================
 # MANUALLY REPLACE THE SNS_TOPIC_ARN BELOW WITH YOUR ACTUAL ARN
 AWS_REGION = 'us-east-1'  # Hardcoded to us-east-1
-SNS_TOPIC_ARN = 'REPLACE_WITH_YOUR_SNS_TOPIC_ARN'  # ⚠️ REPLACE THIS WITH YOUR ARN
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:971422691207:project_topic'  # ⚠️ REPLACE THIS WITH YOUR ARN
 
 # DynamoDB Table Names
 DYNAMODB_TABLE_USERS = 'FF_Users'
@@ -261,7 +261,7 @@ def get_order_items_by_order(order_id):
 
 def send_order_notification(order_id, total_price):
     """Send order confirmation notification via AWS SNS"""
-    if not SNS_TOPIC_ARN or SNS_TOPIC_ARN == 'REPLACE_WITH_YOUR_SNS_TOPIC_ARN':
+    if not SNS_TOPIC_ARN or SNS_TOPIC_ARN == 'arn:aws:sns:us-east-1:971422691207:project_topic':
         # Fallback to console output if SNS not configured
         print("================================")
         print("ORDER CONFIRMATION NOTIFICATION")
